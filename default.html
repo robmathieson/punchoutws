@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>punchout.ws — Sage Intacct Punchout Integrations for Suppliers</title>
+<meta name="description" content="punchout.ws connects Sage Intacct with your suppliers. Seamless punchout purchasing, automated order flow, one simple integration. Powered by ION.">
+<style>
+  :root{
+    --blue:#1256d4;
+    --blue-dark:#0b3a94;
+    --blue-light:#e8f0fe;
+    --ink:#111827;
+    --grey:#5b6472;
+    --grey-light:#f6f8fb;
+    --border:#e3e8f0;
+    --white:#ffffff;
+    --radius:14px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--white);line-height:1.6}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+
+  /* Nav */
+  nav{position:sticky;top:0;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);z-index:10}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .logo{font-size:1.35rem;font-weight:700;color:var(--ink);text-decoration:none;letter-spacing:-.02em}
+  .logo span{color:var(--blue)}
+  .logo small{display:block;font-size:.62rem;font-weight:500;color:var(--grey);letter-spacing:.08em;text-transform:uppercase}
+  .nav-links{display:flex;gap:28px;align-items:center}
+  .nav-links a{color:var(--grey);text-decoration:none;font-size:.95rem;font-weight:500}
+  .nav-links a:hover{color:var(--blue)}
+  .nav-links a.btn{color:#fff}
+  .nav-links a.btn:hover{color:#fff;background:var(--blue-dark)}
+  .btn{display:inline-block;background:var(--blue);color:#fff;padding:12px 26px;border-radius:8px;text-decoration:none;font-weight:600;font-size:.95rem;transition:background .2s}
+  .btn:hover{background:var(--blue-dark)}
+  .btn-outline{background:transparent;color:var(--blue);border:2px solid var(--blue);padding:10px 24px}
+  .btn-outline:hover{background:var(--blue-light)}
+
+  /* Hero */
+  .hero{background:linear-gradient(180deg,var(--blue-light) 0%,var(--white) 100%);padding:88px 0 72px;text-align:center}
+  .hero h1{font-size:clamp(2rem,5vw,3.2rem);line-height:1.15;letter-spacing:-.03em;max-width:820px;margin:0 auto 20px}
+  .hero h1 em{color:var(--blue);font-style:normal}
+  .hero p{font-size:1.2rem;color:var(--grey);max-width:640px;margin:0 auto 34px}
+  .hero .cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .badge{display:inline-block;background:var(--white);border:1px solid var(--border);color:var(--blue);font-size:.8rem;font-weight:600;padding:6px 16px;border-radius:999px;margin-bottom:22px;letter-spacing:.04em}
+
+  /* Flow diagram */
+  .flow{display:flex;align-items:center;justify-content:center;gap:0;margin:60px auto 0;max-width:760px;flex-wrap:wrap}
+  .flow-node{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:22px 28px;box-shadow:0 4px 18px rgba(17,24,39,.06);text-align:center;min-width:190px}
+  .flow-node h4{font-size:1rem;margin-bottom:2px}
+  .flow-node p{font-size:.82rem;color:var(--grey);margin:0}
+  .flow-arrow{color:var(--blue);font-size:1.6rem;padding:0 18px;font-weight:700}
+  .flow-node.hub{background:var(--blue);border-color:var(--blue)}
+  .flow-node.hub h4,.flow-node.hub p{color:#fff}
+  .flow-node.hub p{color:#cfe0ff}
+
+  /* Sections */
+  section{padding:80px 0}
+  section.alt{background:var(--grey-light)}
+  .section-head{text-align:center;max-width:660px;margin:0 auto 52px}
+  .section-head h2{font-size:clamp(1.6rem,3.5vw,2.2rem);letter-spacing:-.02em;margin-bottom:12px}
+  .section-head p{color:var(--grey);font-size:1.05rem}
+
+  /* Features */
+  .grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+  .card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:32px 28px}
+  .card .icon{width:46px;height:46px;border-radius:10px;background:var(--blue-light);display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:18px}
+  .card h3{font-size:1.1rem;margin-bottom:8px}
+  .card p{color:var(--grey);font-size:.95rem}
+
+  /* How it works */
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;counter-reset:step}
+  .step{position:relative;padding:28px 24px 24px;background:var(--white);border:1px solid var(--border);border-radius:var(--radius)}
+  .step::before{counter-increment:step;content:counter(step);position:absolute;top:-18px;left:24px;width:36px;height:36px;border-radius:50%;background:var(--blue);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:1rem}
+  .step h3{font-size:1.02rem;margin:8px 0 6px}
+  .step p{color:var(--grey);font-size:.92rem}
+
+  /* Pricing */
+  .pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px;max-width:860px;margin:0 auto}
+  .price-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:40px 34px;text-align:center;position:relative}
+  .price-card.featured{border:2px solid var(--blue);box-shadow:0 8px 30px rgba(18,86,212,.12)}
+  .price-card .who{font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
+  .price-card h3{font-size:1.3rem;margin-bottom:14px}
+  .price-card .amount{font-size:2.4rem;font-weight:800;letter-spacing:-.03em;margin-bottom:4px}
+  .price-card .amount small{font-size:1rem;font-weight:500;color:var(--grey)}
+  .price-card .note{color:var(--grey);font-size:.9rem;margin-bottom:24px}
+  .price-card ul{list-style:none;text-align:left;margin-bottom:28px}
+  .price-card li{padding:7px 0 7px 28px;position:relative;color:var(--ink);font-size:.94rem}
+  .price-card li::before{content:"✓";position:absolute;left:0;color:var(--blue);font-weight:700}
+  .price-card .caveat{color:var(--grey);font-size:.8rem;font-style:italic;text-align:left;margin:-12px 0 24px}
+
+  /* CTA */
+  .cta-band{background:var(--blue);border-radius:var(--radius);padding:56px 40px;text-align:center;color:#fff}
+  .cta-band h2{font-size:clamp(1.5rem,3vw,2rem);margin-bottom:10px;letter-spacing:-.02em}
+  .cta-band p{color:#cfe0ff;margin-bottom:28px;font-size:1.05rem}
+  .cta-band .btn{background:#fff;color:var(--blue)}
+  .cta-band .btn:hover{background:var(--blue-light)}
+
+  /* Contact */
+  .contact-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px;max-width:760px;margin:0 auto}
+  .contact-card{display:block;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:38px 32px;text-align:center;text-decoration:none;color:var(--ink);transition:box-shadow .2s,border-color .2s}
+  .contact-card:hover{border-color:var(--blue);box-shadow:0 8px 26px rgba(18,86,212,.12)}
+  .contact-card .icon{width:52px;height:52px;border-radius:12px;background:var(--blue-light);display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin:0 auto 16px}
+  .contact-card h3{font-size:1.1rem;margin-bottom:6px}
+  .contact-card .contact-detail{color:var(--blue);font-size:1.25rem;font-weight:700;margin-bottom:6px}
+  .contact-card p{color:var(--grey);font-size:.92rem}
+
+  /* Footer */
+  footer{border-top:1px solid var(--border);padding:36px 0;color:var(--grey);font-size:.88rem}
+  .footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+  footer a{color:var(--grey);text-decoration:none}
+  footer a:hover{color:var(--blue)}
+
+  @media(max-width:720px){
+    .nav-links a:not(.btn){display:none}
+    .flow{flex-direction:column}
+    .flow-arrow{transform:rotate(90deg);padding:10px 0}
+    section{padding:56px 0}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-inner">
+    <a class="logo" href="#">punchout<span>.ws</span><small>Powered by ION</small></a>
+    <div class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#contact" class="btn">Get started</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="badge">SAGE INTACCT &nbsp;↔&nbsp; SUPPLIER PUNCHOUT</div>
+    <h1>Connect <em>Sage Intacct</em> to your suppliers with seamless punchout purchasing</h1>
+    <p>punchout.ws is the integration layer between Sage Intacct and supplier webstores. Your buyers shop on the supplier's site; orders, approvals and invoices flow straight into Intacct. No re-keying. No errors.</p>
+    <div class="cta-row">
+      <a class="btn" href="#how">How it works</a>
+    </div>
+
+    <div class="flow" aria-label="Integration flow diagram">
+      <div class="flow-node">
+        <h4>Sage Intacct</h4>
+        <p>Purchasing &amp; AP</p>
+      </div>
+      <div class="flow-arrow">⇄</div>
+      <div class="flow-node hub">
+        <h4>punchout.ws</h4>
+        <p>Punchout middleware</p>
+      </div>
+      <div class="flow-arrow">⇄</div>
+      <div class="flow-node">
+        <h4>Supplier webstore</h4>
+        <p>Catalogue &amp; checkout</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="how" class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>How it works</h2>
+      <p>One integration. Buyers shop on the supplier's website, and clean order data flows end to end.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <h3>Punch out</h3>
+        <p>The buyer clicks through from Sage Intacct into the supplier's webstore — already authenticated, with contract pricing applied.</p>
+      </div>
+      <div class="step">
+        <h3>Shop</h3>
+        <p>They browse the supplier's live catalogue and fill a basket exactly as they would on any e-commerce site.</p>
+      </div>
+      <div class="step">
+        <h3>Return the basket</h3>
+        <p>At checkout, the basket returns to Sage Intacct as a draft purchase order — line items, pricing and coding intact.</p>
+      </div>
+      <div class="step">
+        <h3>Approve &amp; transact</h3>
+        <p>The PO follows your normal Intacct approval workflow, then transmits to the supplier automatically. Invoices flow back for matching.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="features">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Why punchout.ws</h2>
+      <p>Built by the team behind ION's punchout services for education procurement, now purpose-built for Sage Intacct.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="icon">⚡</div>
+        <h3>Fast implementation</h3>
+        <p>A proven middleware platform and a defined onboarding process mean most integrations go live in weeks, not months.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🧾</div>
+        <h3>No re-keying, no errors</h3>
+        <p>Baskets become purchase orders automatically. Line-level detail, correct pricing and account coding arrive in Intacct every time.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🔒</div>
+        <h3>Control and compliance</h3>
+        <p>Every purchase follows your Intacct approval workflow, keeping spend on-contract and fully auditable.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🛒</div>
+        <h3>Live supplier catalogues</h3>
+        <p>Buyers always see current products, stock and contract pricing — no stale catalogue files to maintain.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🔁</div>
+        <h3>Full document flow</h3>
+        <p>Purchase orders, confirmations, and invoices move automatically between Intacct and the supplier.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🤝</div>
+        <h3>We manage both sides</h3>
+        <p>One point of contact for the customer and the supplier. We build, test and support the connection end to end.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Simple, aligned pricing</h2>
+      <p>A one-off fee to get connected, then we only earn when transactions flow.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="who">For Sage Intacct customers</div>
+        <h3>Setup &amp; integration</h3>
+        <div class="amount">One-off <small>setup fee per supplier</small></div>
+        <p class="note">A single implementation fee for each supplier you connect — then no ongoing charges to you.</p>
+        <ul>
+          <li>Punchout connection to your chosen supplier</li>
+          <li>Configuration within your Intacct environment</li>
+          <li>End-to-end testing and go-live support</li>
+          <li>No per-transaction cost to the buyer</li>
+        </ul>
+        <p class="caveat">* Requires the supplier to operate a webstore that supports punchout integration.</p>
+        <a class="btn btn-outline" href="#contact">Talk to us</a>
+      </div>
+      <div class="price-card featured">
+        <div class="who">For suppliers</div>
+        <h3>Transaction fee</h3>
+        <div class="amount">3% <small>per transaction</small></div>
+        <p class="note">Charged on transactions we process. No setup cost to the supplier.</p>
+        <ul>
+          <li>Access to Sage Intacct buying organisations</li>
+          <li>Orders delivered directly into your systems</li>
+          <li>Automated PO, confirmation and invoice flow</li>
+          <li>Ongoing hosting, monitoring and support included</li>
+        </ul>
+        <a class="btn" href="#contact">Become a connected supplier</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="cta-band">
+      <h2>Ready to connect Sage Intacct to your suppliers?</h2>
+      <p>Tell us which suppliers you buy from — we'll handle the rest.</p>
+      <a class="btn" href="#contact">Get started today</a>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Get in touch</h2>
+      <p>Whether you're a Sage Intacct customer or a supplier, we'd love to talk.</p>
+    </div>
+    <div class="contact-cards">
+      <a class="contact-card" href="tel:+441234567890">
+        <div class="icon">📞</div>
+        <h3>Call us</h3>
+        <p class="contact-detail">+44 (0)1234 567 890</p>
+        <p>Monday to Friday, 9am–5pm</p>
+      </a>
+      <a class="contact-card" href="mailto:punchout.ws@ionhq.co.uk">
+        <div class="icon">✉️</div>
+        <h3>Email us</h3>
+        <p class="contact-detail">punchout.ws@ionhq.co.uk</p>
+        <p>We aim to reply within one business day</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div>© 2026 punchout.ws — powered by ION. All rights reserved.</div>
+    <div><a href="#">Privacy</a> &nbsp;·&nbsp; <a href="#">Terms</a> &nbsp;·&nbsp; <a href="#contact">Contact</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

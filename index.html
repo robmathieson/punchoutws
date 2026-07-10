@@ -3,8 +3,58 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>punchout.ws — Sage Intacct Punchout Integrations for Suppliers</title>
-<meta name="description" content="punchout.ws connects Sage Intacct with your suppliers. Seamless punchout purchasing, automated order flow, one simple integration. Powered by ION.">
+<title>Sage Intacct Punchout Integration | punchout.ws</title>
+<meta name="description" content="Sage Intacct punchout integration made simple. punchout.ws connects Sage Intacct purchasing to supplier webstores — buyers shop on the supplier's site and orders flow straight into Intacct. Powered by ION.">
+<link rel="canonical" href="https://punchout.ws/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://punchout.ws/">
+<meta property="og:title" content="Sage Intacct Punchout Integration | punchout.ws">
+<meta property="og:description" content="Connect Sage Intacct to supplier webstores with punchout. Baskets return as purchase orders — no re-keying, no errors. Powered by ION.">
+<meta property="og:site_name" content="punchout.ws">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Sage Intacct Punchout Integration | punchout.ws">
+<meta name="twitter:description" content="Connect Sage Intacct to supplier webstores with punchout. Baskets return as purchase orders — no re-keying, no errors.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Sage Intacct Punchout Integration",
+  "serviceType": "Punchout integration middleware",
+  "url": "https://punchout.ws/",
+  "provider": {
+    "@type": "Organization",
+    "name": "punchout.ws",
+    "url": "https://punchout.ws/",
+    "email": "punchout.ws@ionhq.co.uk",
+    "parentOrganization": {"@type": "Organization", "name": "ION"}
+  },
+  "areaServed": "GB",
+  "description": "Punchout integration between Sage Intacct and supplier webstores. Buyers shop on the supplier's website and baskets return to Sage Intacct as purchase orders."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is Sage Intacct punchout?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Punchout lets a buyer click out from Sage Intacct purchasing into a supplier's webstore, shop the supplier's live catalogue, and return the basket to Sage Intacct as a draft purchase order. The PO then follows the normal Intacct approval workflow and is transmitted to the supplier automatically."}
+    },
+    {
+      "@type": "Question",
+      "name": "What do suppliers need to support Sage Intacct punchout?",
+      "acceptedAnswer": {"@type": "Answer", "text": "The supplier needs a webstore that supports punchout integration (for example cXML or OCI). punchout.ws provides the middleware that connects the supplier webstore to Sage Intacct and manages the document flow between them."}
+    },
+    {
+      "@type": "Question",
+      "name": "How much does a Sage Intacct punchout integration cost?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Sage Intacct customers pay a one-off setup fee per supplier connection, with no ongoing charges. Suppliers pay a 3% fee on transactions processed through the service, with no setup cost."}
+    }
+  ]
+}
+</script>
 <style>
   :root{
     --blue:#1256d4;
@@ -91,6 +141,12 @@
   .price-card li::before{content:"✓";position:absolute;left:0;color:var(--blue);font-weight:700}
   .price-card .caveat{color:var(--grey);font-size:.8rem;font-style:italic;text-align:left;margin:-12px 0 24px}
 
+  /* FAQ */
+  .faq{max-width:760px;margin:0 auto}
+  .faq details{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:20px 26px;margin-bottom:14px}
+  .faq summary{font-weight:600;cursor:pointer;font-size:1.02rem}
+  .faq details p{color:var(--grey);font-size:.95rem;margin-top:10px}
+
   /* CTA */
   .cta-band{background:var(--blue);border-radius:var(--radius);padding:56px 40px;text-align:center;color:#fff}
   .cta-band h2{font-size:clamp(1.5rem,3vw,2rem);margin-bottom:10px;letter-spacing:-.02em}
@@ -130,6 +186,7 @@
       <a href="#how">How it works</a>
       <a href="#features">Features</a>
       <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
       <a href="#contact" class="btn">Get started</a>
     </div>
   </div>
@@ -138,13 +195,13 @@
 <header class="hero">
   <div class="wrap">
     <div class="badge">SAGE INTACCT &nbsp;↔&nbsp; SUPPLIER PUNCHOUT</div>
-    <h1>Connect <em>Sage Intacct</em> to your suppliers with seamless punchout purchasing</h1>
-    <p>punchout.ws is the integration layer between Sage Intacct and supplier webstores. Your buyers shop on the supplier's site; orders, approvals and invoices flow straight into Intacct. No re-keying. No errors.</p>
+    <h1><em>Sage Intacct punchout</em> integration, made simple</h1>
+    <p>punchout.ws connects Sage Intacct to supplier webstores with punchout. Your buyers shop on the supplier's site; orders, approvals and invoices flow straight into Intacct. No re-keying. No errors.</p>
     <div class="cta-row">
       <a class="btn" href="#how">How it works</a>
     </div>
 
-    <div class="flow" aria-label="Integration flow diagram">
+    <div class="flow" aria-label="Sage Intacct punchout integration flow diagram">
       <div class="flow-node">
         <h4>Sage Intacct</h4>
         <p>Purchasing &amp; AP</p>
@@ -166,7 +223,7 @@
 <section id="how" class="alt">
   <div class="wrap">
     <div class="section-head">
-      <h2>How it works</h2>
+      <h2>How Sage Intacct punchout works</h2>
       <p>One integration. Buyers shop on the supplier's website, and clean order data flows end to end.</p>
     </div>
     <div class="steps">
@@ -193,8 +250,8 @@
 <section id="features">
   <div class="wrap">
     <div class="section-head">
-      <h2>Why punchout.ws</h2>
-      <p>Built by the team behind ION's punchout services for education procurement, now purpose-built for Sage Intacct.</p>
+      <h2>Why punchout.ws for Sage Intacct</h2>
+      <p>Built by the team behind ION's punchout services for education procurement, now purpose-built for Sage Intacct punchout.</p>
     </div>
     <div class="grid-3">
       <div class="card">
@@ -215,7 +272,7 @@
       <div class="card">
         <div class="icon">🛒</div>
         <h3>Live supplier catalogues</h3>
-        <p>Buyers always see current products, stock and contract pricing — no stale catalogue files to maintain.</p>
+        <p>Buyers always see current products, stock and contract pricing on the supplier's webstore — no stale catalogue files to maintain.</p>
       </div>
       <div class="card">
         <div class="icon">🔁</div>
@@ -269,17 +326,40 @@
   </div>
 </section>
 
-<section>
+<section id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Sage Intacct punchout FAQs</h2>
+      <p>Common questions about connecting Sage Intacct to supplier webstores.</p>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>What is Sage Intacct punchout?</summary>
+        <p>Punchout lets a buyer click out from Sage Intacct purchasing into a supplier's webstore, shop the supplier's live catalogue, and return the basket to Sage Intacct as a draft purchase order. The PO then follows your normal Intacct approval workflow and is transmitted to the supplier automatically.</p>
+      </details>
+      <details>
+        <summary>What do suppliers need to support Sage Intacct punchout?</summary>
+        <p>The supplier needs a webstore that supports punchout integration (for example cXML or OCI). punchout.ws provides the middleware that connects the supplier webstore to Sage Intacct and manages the document flow between them.</p>
+      </details>
+      <details>
+        <summary>How much does a Sage Intacct punchout integration cost?</summary>
+        <p>Sage Intacct customers pay a one-off setup fee per supplier connection, with no ongoing charges. Suppliers pay a 3% fee on transactions processed through the service, with no setup cost.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
   <div class="wrap">
     <div class="cta-band">
-      <h2>Ready to connect Sage Intacct to your suppliers?</h2>
+      <h2>Ready to connect Sage Intacct to your suppliers with punchout?</h2>
       <p>Tell us which suppliers you buy from — we'll handle the rest.</p>
       <a class="btn" href="#contact">Get started today</a>
     </div>
   </div>
 </section>
 
-<section id="contact" class="alt">
+<section id="contact">
   <div class="wrap">
     <div class="section-head">
       <h2>Get in touch</h2>
@@ -305,7 +385,7 @@
 <footer>
   <div class="wrap footer-inner">
     <div>© 2026 punchout.ws — powered by ION. All rights reserved.</div>
-    <!--<div><a href="#">Privacy</a> &nbsp;·&nbsp; <a href="#">Terms</a> &nbsp;·&nbsp; <a href="#contact">Contact</a></div>-->
+    <div><a href="#">Privacy</a> &nbsp;·&nbsp; <a href="#">Terms</a> &nbsp;·&nbsp; <a href="#contact">Contact</a></div>
   </div>
 </footer>
 

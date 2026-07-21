@@ -1,0 +1,4 @@
+Options +FollowSymlinks
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^belgraviaps.com [NC]
+RewriteRule ^(.*)$ https://www.belgraviaps.com/$1 [L,R=301]

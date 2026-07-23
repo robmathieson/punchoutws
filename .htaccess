@@ -1,4 +1,4 @@
 Options +FollowSymlinks
 RewriteEngine on
-RewriteCond %{HTTP_HOST} ^belgraviaps.com [NC]
-RewriteRule ^(.*)$ https://www.belgraviaps.com/$1 [L,R=301]
+RewriteCond %{HTTP_HOST} ^punchout.ws [NC]
+RewriteRule ^(.*)$ https://www.punchout.ws/$1 [L,R=301]
